@@ -97,6 +97,7 @@ namespace Parkhaus360
                 if (haus.GetFreieAutoParkplatzAnzahl() <= 0)
                 {
                     MessageBox.Show("Es sind keine Autoparkplätze mehr frei");
+                    break;
                 }
                 else
                 {
@@ -106,21 +107,21 @@ namespace Parkhaus360
                     p.belegePlatz(auto);
                     rtbAusgabe.AppendText(auto.GetKennzeichen() +" Typ: Auto Ebene: "+ Environment.NewLine);
                     rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
-                    rtbAusgabe.ScrollToCaret();
-                    
+                    rtbAusgabe.ScrollToCaret();                    
                 }
             }
             Liveupdate();
         }
         private void btnMotoRein_Click(object sender, EventArgs e)
-        {
-            if (haus.GetFreieMotorradParkplatzAnzahl() <= 0)
+        {            
+            for (int i = 0; i < nudMotorradrein.Value; i++)
             {
-                MessageBox.Show("Es sind keine Motorradparkplätze mehr frei");
-            }
-            else
-            {
-                for (int i = 0; i < nudMotorradrein.Value; i++)
+                if (haus.GetFreieMotorradParkplatzAnzahl() <= 0)
+                {
+                    MessageBox.Show("Es sind keine Motorradparkplätze mehr frei");
+                    break;
+                }
+                else
                 {
                     Motorrad moto = new Motorrad(ErstelleNummernschild());
 
@@ -128,8 +129,7 @@ namespace Parkhaus360
                     p.belegePlatz(moto);
                     rtbAusgabe.AppendText(moto.GetKennzeichen() + Environment.NewLine);
                     rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
-                    rtbAusgabe.ScrollToCaret();
-                    
+                    rtbAusgabe.ScrollToCaret();                    
                 }
             }
             Liveupdate();
