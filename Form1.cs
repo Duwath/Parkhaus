@@ -22,6 +22,7 @@ namespace Parkhaus360
                 panelReset.Visible = false;
                 panelErstellung.Visible = true;
                 rtbAusgabe.Clear();
+
             }
             else
             {
@@ -105,15 +106,15 @@ namespace Parkhaus360
 
                     Parkplatz p = haus.FindeFreienParkplatz(auto);
                     p.belegePlatz(auto);
-                    rtbAusgabe.AppendText(auto.GetKennzeichen() +" Typ: Auto Ebene: "+ Environment.NewLine);
+                    rtbAusgabe.AppendText(auto.GetKennzeichen() + " Typ: Auto Ebene: " + Environment.NewLine);
                     rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
-                    rtbAusgabe.ScrollToCaret();                    
+                    rtbAusgabe.ScrollToCaret();
                 }
             }
             Liveupdate();
         }
         private void btnMotoRein_Click(object sender, EventArgs e)
-        {            
+        {
             for (int i = 0; i < nudMotorradrein.Value; i++)
             {
                 if (haus.GetFreieMotorradParkplatzAnzahl() <= 0)
@@ -129,7 +130,7 @@ namespace Parkhaus360
                     p.belegePlatz(moto);
                     rtbAusgabe.AppendText(moto.GetKennzeichen() + Environment.NewLine);
                     rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
-                    rtbAusgabe.ScrollToCaret();                    
+                    rtbAusgabe.ScrollToCaret();
                 }
             }
             Liveupdate();
@@ -178,7 +179,46 @@ namespace Parkhaus360
             }
             return kennzeichennr.ToString();
         }
+        private void btnAutoRaus_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < nudAutoraus.Value; i++)
+            {
+                if (haus.GetFreieAutoParkplatzAnzahl() >= 0)
+                {
+                    MessageBox.Show("Es sind keine weiteren Autos mehr geparkt.");
+                    break;
+                }
+                else
+                {
+
+                }
+            }
+            Liveupdate();
+        }
 
 
+        private void btnMotoRaus_Click_1(object sender, EventArgs e)
+        {
+            for (int i = 0; i < nudMotorradraus.Value; i++)
+            {
+                if (haus.GetFreieMotorradParkplatzAnzahl() >= 0)
+                {
+                    MessageBox.Show("Es sind keine weiteren Motorräder mehr geparkt.");
+                    break;
+                }
+                else
+                {
+
+                }
+            }
+            Liveupdate();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+            Parkplatz pp = haus.FindeFahrzeug(tbSuche.ToString());
+            lblParkdeck.Text = pp.GetPosition().ToString();
+        }
     }
 }

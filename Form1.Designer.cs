@@ -39,14 +39,14 @@
             nudEtagen = new NumericUpDown();
             button1 = new Button();
             panel6 = new Panel();
-            label19 = new Label();
+            lblParkplatz = new Label();
             label18 = new Label();
-            label17 = new Label();
+            lblParkdeck = new Label();
             label16 = new Label();
-            button6 = new Button();
+            btnKennzeichensuche = new Button();
             label13 = new Label();
             label12 = new Label();
-            textBox1 = new TextBox();
+            tbSuche = new TextBox();
             panel5 = new Panel();
             rtbAusgabe = new RichTextBox();
             panelSimulation = new Panel();
@@ -55,8 +55,8 @@
             label8 = new Label();
             btnMotoRaus = new Button();
             btnAutoRaus = new Button();
-            numericUpDown6 = new NumericUpDown();
-            numericUpDown7 = new NumericUpDown();
+            nudMotorradraus = new NumericUpDown();
+            nudAutoraus = new NumericUpDown();
             label5 = new Label();
             label4 = new Label();
             btnMotoRein = new Button();
@@ -82,8 +82,8 @@
             panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudMotorradraus).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudAutoraus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMotorradrein).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAutorein).BeginInit();
             panel2.SuspendLayout();
@@ -187,27 +187,27 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(label19);
+            panel6.Controls.Add(lblParkplatz);
             panel6.Controls.Add(label18);
-            panel6.Controls.Add(label17);
+            panel6.Controls.Add(lblParkdeck);
             panel6.Controls.Add(label16);
-            panel6.Controls.Add(button6);
+            panel6.Controls.Add(btnKennzeichensuche);
             panel6.Controls.Add(label13);
             panel6.Controls.Add(label12);
-            panel6.Controls.Add(textBox1);
+            panel6.Controls.Add(tbSuche);
             panel6.Location = new Point(815, 15);
             panel6.Name = "panel6";
             panel6.Size = new Size(234, 126);
             panel6.TabIndex = 25;
             // 
-            // label19
+            // lblParkplatz
             // 
-            label19.AutoSize = true;
-            label19.Location = new Point(178, 103);
-            label19.Name = "label19";
-            label19.Size = new Size(10, 15);
-            label19.TabIndex = 7;
-            label19.Text = " ";
+            lblParkplatz.AutoSize = true;
+            lblParkplatz.Location = new Point(178, 103);
+            lblParkplatz.Name = "lblParkplatz";
+            lblParkplatz.Size = new Size(10, 15);
+            lblParkplatz.TabIndex = 7;
+            lblParkplatz.Text = " ";
             // 
             // label18
             // 
@@ -218,14 +218,14 @@
             label18.TabIndex = 6;
             label18.Text = "Parkplatz:";
             // 
-            // label17
+            // lblParkdeck
             // 
-            label17.AutoSize = true;
-            label17.Location = new Point(178, 84);
-            label17.Name = "label17";
-            label17.Size = new Size(10, 15);
-            label17.TabIndex = 5;
-            label17.Text = " ";
+            lblParkdeck.AutoSize = true;
+            lblParkdeck.Location = new Point(178, 84);
+            lblParkdeck.Name = "lblParkdeck";
+            lblParkdeck.Size = new Size(10, 15);
+            lblParkdeck.TabIndex = 5;
+            lblParkdeck.Text = " ";
             // 
             // label16
             // 
@@ -236,14 +236,15 @@
             label16.TabIndex = 4;
             label16.Text = "Fahrzeug steht auf Parkdeck:";
             // 
-            // button6
+            // btnKennzeichensuche
             // 
-            button6.Location = new Point(33, 58);
-            button6.Name = "button6";
-            button6.Size = new Size(164, 23);
-            button6.TabIndex = 3;
-            button6.Text = "Suche nach Kennzeichen";
-            button6.UseVisualStyleBackColor = true;
+            btnKennzeichensuche.Location = new Point(33, 58);
+            btnKennzeichensuche.Name = "btnKennzeichensuche";
+            btnKennzeichensuche.Size = new Size(164, 23);
+            btnKennzeichensuche.TabIndex = 3;
+            btnKennzeichensuche.Text = "Suche nach Kennzeichen";
+            btnKennzeichensuche.UseVisualStyleBackColor = true;
+            btnKennzeichensuche.Click += button6_Click;
             // 
             // label13
             // 
@@ -264,12 +265,12 @@
             label12.TabIndex = 1;
             label12.Text = "Autosuche";
             // 
-            // textBox1
+            // tbSuche
             // 
-            textBox1.Location = new Point(112, 29);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 0;
+            tbSuche.Location = new Point(112, 29);
+            tbSuche.Name = "tbSuche";
+            tbSuche.Size = new Size(100, 23);
+            tbSuche.TabIndex = 0;
             // 
             // panel5
             // 
@@ -300,8 +301,8 @@
             panel3.Controls.Add(label8);
             panel3.Controls.Add(btnMotoRaus);
             panel3.Controls.Add(btnAutoRaus);
-            panel3.Controls.Add(numericUpDown6);
-            panel3.Controls.Add(numericUpDown7);
+            panel3.Controls.Add(nudMotorradraus);
+            panel3.Controls.Add(nudAutoraus);
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label4);
             panel3.Controls.Add(btnMotoRein);
@@ -339,6 +340,7 @@
             btnMotoRaus.TabIndex = 22;
             btnMotoRaus.Text = "rausfahren lassen";
             btnMotoRaus.UseVisualStyleBackColor = true;
+            btnMotoRaus.Click += btnMotoRaus_Click_1;
             // 
             // btnAutoRaus
             // 
@@ -348,22 +350,23 @@
             btnAutoRaus.TabIndex = 21;
             btnAutoRaus.Text = "rausfahren lassen";
             btnAutoRaus.UseVisualStyleBackColor = true;
+            btnAutoRaus.Click += btnAutoRaus_Click;
             // 
-            // numericUpDown6
+            // nudMotorradraus
             // 
-            numericUpDown6.Location = new Point(3, 86);
-            numericUpDown6.Name = "numericUpDown6";
-            numericUpDown6.Size = new Size(42, 23);
-            numericUpDown6.TabIndex = 20;
-            numericUpDown6.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudMotorradraus.Location = new Point(3, 86);
+            nudMotorradraus.Name = "nudMotorradraus";
+            nudMotorradraus.Size = new Size(42, 23);
+            nudMotorradraus.TabIndex = 20;
+            nudMotorradraus.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // numericUpDown7
+            // nudAutoraus
             // 
-            numericUpDown7.Location = new Point(3, 59);
-            numericUpDown7.Name = "numericUpDown7";
-            numericUpDown7.Size = new Size(42, 23);
-            numericUpDown7.TabIndex = 19;
-            numericUpDown7.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudAutoraus.Location = new Point(3, 59);
+            nudAutoraus.Name = "nudAutoraus";
+            nudAutoraus.Size = new Size(42, 23);
+            nudAutoraus.TabIndex = 19;
+            nudAutoraus.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label5
             // 
@@ -550,8 +553,8 @@
             panel5.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudMotorradraus).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudAutoraus).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMotorradrein).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudAutorein).EndInit();
             panel2.ResumeLayout(false);
@@ -572,14 +575,14 @@
         private NumericUpDown nudEtagen;
         private Button button1;
         private Panel panel6;
-        private Label label19;
+        private Label lblParkplatz;
         private Label label18;
-        private Label label17;
+        private Label lblParkdeck;
         private Label label16;
-        private Button button6;
+        private Button btnKennzeichensuche;
         private Label label13;
         private Label label12;
-        private TextBox textBox1;
+        private TextBox tbSuche;
         private Panel panel5;
         private RichTextBox rtbAusgabe;
         private Panel panelSimulation;
@@ -588,8 +591,8 @@
         private Label label8;
         private Button btnMotoRaus;
         private Button btnAutoRaus;
-        private NumericUpDown numericUpDown6;
-        private NumericUpDown numericUpDown7;
+        private NumericUpDown nudMotorradraus;
+        private NumericUpDown nudAutoraus;
         private Label label5;
         private Label label4;
         private Button btnMotoRein;
