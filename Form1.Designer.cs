@@ -93,7 +93,7 @@
             panelReset.Controls.Add(btnReset);
             panelReset.Location = new Point(178, 2);
             panelReset.Name = "panelReset";
-            panelReset.Size = new Size(99, 39);
+            panelReset.Size = new Size(50, 39);
             panelReset.TabIndex = 20;
             panelReset.Visible = false;
             // 
@@ -101,7 +101,7 @@
             // 
             btnReset.Location = new Point(3, 13);
             btnReset.Name = "btnReset";
-            btnReset.Size = new Size(75, 23);
+            btnReset.Size = new Size(44, 23);
             btnReset.TabIndex = 0;
             btnReset.Text = "Reset";
             btnReset.UseVisualStyleBackColor = true;
@@ -194,7 +194,7 @@
             panel6.Controls.Add(label13);
             panel6.Controls.Add(label12);
             panel6.Controls.Add(tbSuche);
-            panel6.Location = new Point(480, 15);
+            panel6.Location = new Point(361, 15);
             panel6.Name = "panel6";
             panel6.Size = new Size(234, 126);
             panel6.TabIndex = 25;
@@ -273,9 +273,9 @@
             // 
             // rtbAusgabe
             // 
-            rtbAusgabe.Location = new Point(480, 147);
+            rtbAusgabe.Location = new Point(361, 145);
             rtbAusgabe.Name = "rtbAusgabe";
-            rtbAusgabe.Size = new Size(234, 196);
+            rtbAusgabe.Size = new Size(234, 211);
             rtbAusgabe.TabIndex = 0;
             rtbAusgabe.Text = "";
             // 
@@ -293,7 +293,7 @@
             panel3.Controls.Add(btnAutorein);
             panel3.Controls.Add(nudMotorradrein);
             panel3.Controls.Add(nudAutorein);
-            panel3.Location = new Point(480, 349);
+            panel3.Location = new Point(361, 359);
             panel3.Name = "panel3";
             panel3.Size = new Size(234, 112);
             panel3.TabIndex = 22;
@@ -515,7 +515,7 @@
             // cbSimulation
             // 
             cbSimulation.FormattingEnabled = true;
-            cbSimulation.Location = new Point(353, 15);
+            cbSimulation.Location = new Point(234, 15);
             cbSimulation.Name = "cbSimulation";
             cbSimulation.Size = new Size(121, 23);
             cbSimulation.TabIndex = 26;
@@ -524,16 +524,16 @@
             // 
             // panelSimulation
             // 
-            panelSimulation.Location = new Point(178, 41);
+            panelSimulation.Location = new Point(178, 44);
             panelSimulation.Name = "panelSimulation";
-            panelSimulation.Size = new Size(296, 427);
+            panelSimulation.Size = new Size(177, 427);
             panelSimulation.TabIndex = 27;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(720, 471);
+            ClientSize = new Size(600, 471);
             Controls.Add(rtbAusgabe);
             Controls.Add(panelSimulation);
             Controls.Add(cbSimulation);
