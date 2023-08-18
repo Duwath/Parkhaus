@@ -12,25 +12,26 @@ namespace Parkhaus360
         {
             InitializeComponent();
         }
-       
+
         private void Simulationsconstruction()
         {
             for (int i = 0; i < haus.GetDeckAnzahl(); i++)
             {
                 cbSimulation.Show();
-                cbSimulation.Items.Add("Ebene " + (i+1));
+                cbSimulation.Items.Add("Ebene " + (i + 1));
 
             }
             cbSimulation.SelectedIndex = 0;
         }
         private void SimulationStart()
         {
-            
+
             panelSimulation.Controls.Clear();
             int etage = cbSimulation.SelectedIndex;
             int y = 0;
             for (int x = 0; x < (int)nudPAuto.Value; x++)
             {
+
                 if (x % 10 == 0)
                 {
                     y += 20;
@@ -53,32 +54,31 @@ namespace Parkhaus360
 
             }
 
-                y += 20;
-                for (int x = 0; x < haus.GetFreieMotorradParkplatzAnzahl() / haus.GetDeckAnzahl(); x++)
+            y += 20;
+            for (int x = 0; x < nudPZweirad.Value; x++)
+            {
+                if (x % 10 == 0)
                 {
-                    if (x % 10 == 0)
-                    {
-                        y += 20;
-                    }
-                    Label labeltemp = new Label();
-                    labeltemp.Name = x.ToString();
-                    labeltemp.Text = "Y";
+                    y += 20;
+                }
+                Label labeltemp = new Label();
+                labeltemp.Name = x.ToString();
+                labeltemp.Text = "Y";
+                if (haus.IstMotorradParkplatzFrei(etage, x) == true)
+                {
                     labeltemp.ForeColor = Color.Green;
-                    labeltemp.Location = new Point(x % 10 * 15, y);
-                    labeltemp.Width = 12;
-                    labeltemp.Height = 12;
-                    panelSimulation.Controls.Add(labeltemp);
+                }
+                else
+                {
+                    labeltemp.ForeColor = Color.Red;
+                }
 
-                }              
-                
-            
-
-
+                labeltemp.Location = new Point(x % 10 * 15, y);
+                labeltemp.Width = 12;
+                labeltemp.Height = 12;
+                panelSimulation.Controls.Add(labeltemp);
+            }
         }
-
-
-
-        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -90,10 +90,10 @@ namespace Parkhaus360
             haus = new Parkhaus(etage, autoParkPlaetze, zweiradParkPlaetze);
             panelErstellung.Visible = false;
             panelReset.Visible = true;
-            
+
             Liveupdate();
-            
-            Simulationsconstruction();            
+
+            Simulationsconstruction();
             SimulationStart();
 
         }
@@ -144,7 +144,7 @@ namespace Parkhaus360
                         rtbAusgabe.ScrollToCaret();
                     }
                     Liveupdate();
-                    
+
                 }
             }
             SimulationStart();
@@ -177,7 +177,7 @@ namespace Parkhaus360
                         rtbAusgabe.ScrollToCaret();
                     }
                     Liveupdate();
-                    
+
                 }
             }
             SimulationStart();

@@ -47,7 +47,6 @@
             label13 = new Label();
             label12 = new Label();
             tbSuche = new TextBox();
-            panel5 = new Panel();
             rtbAusgabe = new RichTextBox();
             panel3 = new Panel();
             label7 = new Label();
@@ -81,7 +80,6 @@
             ((System.ComponentModel.ISupportInitialize)nudPAuto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudEtagen).BeginInit();
             panel6.SuspendLayout();
-            panel5.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudMotorradraus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAutoraus).BeginInit();
@@ -101,7 +99,7 @@
             // 
             // btnReset
             // 
-            btnReset.Location = new Point(3, 9);
+            btnReset.Location = new Point(3, 13);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(75, 23);
             btnReset.TabIndex = 0;
@@ -196,7 +194,7 @@
             panel6.Controls.Add(label13);
             panel6.Controls.Add(label12);
             panel6.Controls.Add(tbSuche);
-            panel6.Location = new Point(815, 15);
+            panel6.Location = new Point(480, 15);
             panel6.Name = "panel6";
             panel6.Size = new Size(234, 126);
             panel6.TabIndex = 25;
@@ -273,19 +271,11 @@
             tbSuche.Size = new Size(100, 23);
             tbSuche.TabIndex = 0;
             // 
-            // panel5
-            // 
-            panel5.Controls.Add(rtbAusgabe);
-            panel5.Location = new Point(815, 147);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(234, 202);
-            panel5.TabIndex = 24;
-            // 
             // rtbAusgabe
             // 
-            rtbAusgabe.Location = new Point(3, 3);
+            rtbAusgabe.Location = new Point(480, 147);
             rtbAusgabe.Name = "rtbAusgabe";
-            rtbAusgabe.Size = new Size(228, 196);
+            rtbAusgabe.Size = new Size(234, 196);
             rtbAusgabe.TabIndex = 0;
             rtbAusgabe.Text = "";
             // 
@@ -303,7 +293,7 @@
             panel3.Controls.Add(btnAutorein);
             panel3.Controls.Add(nudMotorradrein);
             panel3.Controls.Add(nudAutorein);
-            panel3.Location = new Point(815, 355);
+            panel3.Location = new Point(480, 349);
             panel3.Name = "panel3";
             panel3.Size = new Size(234, 112);
             panel3.TabIndex = 22;
@@ -525,7 +515,7 @@
             // cbSimulation
             // 
             cbSimulation.FormattingEnabled = true;
-            cbSimulation.Location = new Point(389, 11);
+            cbSimulation.Location = new Point(353, 15);
             cbSimulation.Name = "cbSimulation";
             cbSimulation.Size = new Size(121, 23);
             cbSimulation.TabIndex = 26;
@@ -534,22 +524,22 @@
             // 
             // panelSimulation
             // 
-            panelSimulation.Location = new Point(516, 12);
+            panelSimulation.Location = new Point(178, 41);
             panelSimulation.Name = "panelSimulation";
-            panelSimulation.Size = new Size(296, 455);
+            panelSimulation.Size = new Size(296, 427);
             panelSimulation.TabIndex = 27;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1057, 477);
+            ClientSize = new Size(720, 471);
+            Controls.Add(rtbAusgabe);
             Controls.Add(panelSimulation);
             Controls.Add(cbSimulation);
             Controls.Add(panelReset);
             Controls.Add(panelErstellung);
             Controls.Add(panel6);
-            Controls.Add(panel5);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Name = "Form1";
@@ -562,7 +552,6 @@
             ((System.ComponentModel.ISupportInitialize)nudEtagen).EndInit();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
-            panel5.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudMotorradraus).EndInit();
@@ -595,7 +584,6 @@
         private Label label13;
         private Label label12;
         private TextBox tbSuche;
-        private Panel panel5;
         private RichTextBox rtbAusgabe;
         private Panel panel3;
         private Label label7;
