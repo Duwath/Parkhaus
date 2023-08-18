@@ -41,12 +41,12 @@
             panel6 = new Panel();
             lblParkplatz = new Label();
             label18 = new Label();
-            lblParkdeck = new Label();
             label16 = new Label();
             btnKennzeichensuche = new Button();
             label13 = new Label();
             label12 = new Label();
             tbSuche = new TextBox();
+            lblParkdeck = new Label();
             panel5 = new Panel();
             rtbAusgabe = new RichTextBox();
             panelSimulation = new Panel();
@@ -203,7 +203,7 @@
             // lblParkplatz
             // 
             lblParkplatz.AutoSize = true;
-            lblParkplatz.Location = new Point(178, 103);
+            lblParkplatz.Location = new Point(187, 103);
             lblParkplatz.Name = "lblParkplatz";
             lblParkplatz.Size = new Size(10, 15);
             lblParkplatz.TabIndex = 7;
@@ -217,15 +217,6 @@
             label18.Size = new Size(58, 15);
             label18.TabIndex = 6;
             label18.Text = "Parkplatz:";
-            // 
-            // lblParkdeck
-            // 
-            lblParkdeck.AutoSize = true;
-            lblParkdeck.Location = new Point(178, 84);
-            lblParkdeck.Name = "lblParkdeck";
-            lblParkdeck.Size = new Size(10, 15);
-            lblParkdeck.TabIndex = 5;
-            lblParkdeck.Text = " ";
             // 
             // label16
             // 
@@ -271,6 +262,15 @@
             tbSuche.Name = "tbSuche";
             tbSuche.Size = new Size(100, 23);
             tbSuche.TabIndex = 0;
+            // 
+            // lblParkdeck
+            // 
+            lblParkdeck.AutoSize = true;
+            lblParkdeck.Location = new Point(187, 84);
+            lblParkdeck.Name = "lblParkdeck";
+            lblParkdeck.Size = new Size(10, 15);
+            lblParkdeck.TabIndex = 5;
+            lblParkdeck.Text = " ";
             // 
             // panel5
             // 

@@ -106,7 +106,7 @@ namespace Parkhaus360
 
                     Parkplatz p = haus.FindeFreienParkplatz(auto);
                     p.belegePlatz(auto);
-                    rtbAusgabe.AppendText(auto.GetKennzeichen() + " Typ: Auto Ebene: " + Environment.NewLine);
+                    rtbAusgabe.AppendText(auto.GetKennzeichen() + " Typ: Auto Ebene: "+ p.GetPosition().etage.ToString()+" Platz: "+p.GetPosition().platz.ToString() + Environment.NewLine);
                     rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
                     rtbAusgabe.ScrollToCaret();
                 }
@@ -128,7 +128,7 @@ namespace Parkhaus360
 
                     Parkplatz p = haus.FindeFreienParkplatz(moto);
                     p.belegePlatz(moto);
-                    rtbAusgabe.AppendText(moto.GetKennzeichen() + Environment.NewLine);
+                    rtbAusgabe.AppendText(moto.GetKennzeichen() + " Typ: Zweirad Ebene: " + p.GetPosition().etage.ToString() + " Platz: " + p.GetPosition().platz.ToString() + Environment.NewLine);
                     rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
                     rtbAusgabe.ScrollToCaret();
                 }
@@ -217,8 +217,10 @@ namespace Parkhaus360
         private void button6_Click(object sender, EventArgs e)
         {
 
-            Parkplatz pp = haus.FindeFahrzeug(tbSuche.ToString());
-            lblParkdeck.Text = pp.GetPosition().ToString();
+            Parkplatz pp = haus.FindeFahrzeug(tbSuche.Text.ToString());
+
+            lblParkdeck.Text = pp.GetPosition().etage.ToString();
+            lblParkplatz.Text = pp.GetPosition().platz.ToString();
         }
     }
 }

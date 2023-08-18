@@ -52,8 +52,13 @@ namespace Parkhaus360
             foreach (Parkplatz pp in autoparkplaetze)
             {
                 Fahrzeug f = pp.GetFahrzeug();
-                if (f != null && f.GetKennzeichen().Equals(kenn))
+                 
+                if (f != null && f.GetKennzeichen().Trim().Equals(kenn.Trim()))
+                {
+                    MessageBox.Show("Gefunden");
                     return pp;
+                }
+                    
             }
             foreach (Parkplatz pp in motorradparkplaetze)
             {
