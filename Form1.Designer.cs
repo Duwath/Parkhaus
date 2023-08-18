@@ -41,15 +41,14 @@
             panel6 = new Panel();
             lblParkplatz = new Label();
             label18 = new Label();
+            lblParkdeck = new Label();
             label16 = new Label();
             btnKennzeichensuche = new Button();
             label13 = new Label();
             label12 = new Label();
             tbSuche = new TextBox();
-            lblParkdeck = new Label();
             panel5 = new Panel();
             rtbAusgabe = new RichTextBox();
-            panelSimulation = new Panel();
             panel3 = new Panel();
             label7 = new Label();
             label8 = new Label();
@@ -74,6 +73,8 @@
             label10 = new Label();
             label9 = new Label();
             label6 = new Label();
+            cbSimulation = new ComboBox();
+            panelSimulation = new Panel();
             panelReset.SuspendLayout();
             panelErstellung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPZweirad).BeginInit();
@@ -218,6 +219,15 @@
             label18.TabIndex = 6;
             label18.Text = "Parkplatz:";
             // 
+            // lblParkdeck
+            // 
+            lblParkdeck.AutoSize = true;
+            lblParkdeck.Location = new Point(187, 84);
+            lblParkdeck.Name = "lblParkdeck";
+            lblParkdeck.Size = new Size(10, 15);
+            lblParkdeck.TabIndex = 5;
+            lblParkdeck.Text = " ";
+            // 
             // label16
             // 
             label16.AutoSize = true;
@@ -263,15 +273,6 @@
             tbSuche.Size = new Size(100, 23);
             tbSuche.TabIndex = 0;
             // 
-            // lblParkdeck
-            // 
-            lblParkdeck.AutoSize = true;
-            lblParkdeck.Location = new Point(187, 84);
-            lblParkdeck.Name = "lblParkdeck";
-            lblParkdeck.Size = new Size(10, 15);
-            lblParkdeck.TabIndex = 5;
-            lblParkdeck.Text = " ";
-            // 
             // panel5
             // 
             panel5.Controls.Add(rtbAusgabe);
@@ -287,13 +288,6 @@
             rtbAusgabe.Size = new Size(228, 196);
             rtbAusgabe.TabIndex = 0;
             rtbAusgabe.Text = "";
-            // 
-            // panelSimulation
-            // 
-            panelSimulation.Location = new Point(516, 15);
-            panelSimulation.Name = "panelSimulation";
-            panelSimulation.Size = new Size(293, 452);
-            panelSimulation.TabIndex = 23;
             // 
             // panel3
             // 
@@ -528,16 +522,34 @@
             label6.TabIndex = 0;
             label6.Text = "Parkhausübersicht";
             // 
+            // cbSimulation
+            // 
+            cbSimulation.FormattingEnabled = true;
+            cbSimulation.Location = new Point(389, 11);
+            cbSimulation.Name = "cbSimulation";
+            cbSimulation.Size = new Size(121, 23);
+            cbSimulation.TabIndex = 26;
+            cbSimulation.Visible = false;
+            cbSimulation.SelectedIndexChanged += cbSimulation_SelectedIndexChanged;
+            // 
+            // panelSimulation
+            // 
+            panelSimulation.Location = new Point(516, 12);
+            panelSimulation.Name = "panelSimulation";
+            panelSimulation.Size = new Size(296, 455);
+            panelSimulation.TabIndex = 27;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1057, 477);
+            Controls.Add(panelSimulation);
+            Controls.Add(cbSimulation);
             Controls.Add(panelReset);
             Controls.Add(panelErstellung);
             Controls.Add(panel6);
             Controls.Add(panel5);
-            Controls.Add(panelSimulation);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Name = "Form1";
@@ -585,7 +597,6 @@
         private TextBox tbSuche;
         private Panel panel5;
         private RichTextBox rtbAusgabe;
-        private Panel panelSimulation;
         private Panel panel3;
         private Label label7;
         private Label label8;
@@ -610,5 +621,7 @@
         private Label label10;
         private Label label9;
         private Label label6;
+        private ComboBox cbSimulation;
+        private Panel panelSimulation;
     }
 }

@@ -37,11 +37,29 @@ namespace Parkhaus360
             }
             return null;
         }
-        public MotorradParkplatz FindeFreienParkplatz(Motorrad a)
+        public AutoParkplatz FindeErstenBelegtenAutoparkplatz()
+        {
+            foreach (Parkplatz p in autoparkplaetze)
+            {
+                if (!p.IstFrei())
+                    return (AutoParkplatz)p;
+            }
+            return null;
+        }
+        public MotorradParkplatz FindeFreienParkplatz()
         {
             foreach (Parkplatz p in motorradparkplaetze)
             {
                 if (p.IstFrei())
+                    return (MotorradParkplatz)p;
+            }
+            return null;
+        }
+        public MotorradParkplatz FindeErstenBelegtenMotorradparkplatz()
+        {
+            foreach (Parkplatz p in motorradparkplaetze)
+            {
+                if (!p.IstFrei())
                     return (MotorradParkplatz)p;
             }
             return null;
@@ -52,13 +70,12 @@ namespace Parkhaus360
             foreach (Parkplatz pp in autoparkplaetze)
             {
                 Fahrzeug f = pp.GetFahrzeug();
-                 
+
                 if (f != null && f.GetKennzeichen().Trim().Equals(kenn.Trim()))
                 {
-                    MessageBox.Show("Gefunden");
                     return pp;
                 }
-                    
+
             }
             foreach (Parkplatz pp in motorradparkplaetze)
             {
@@ -92,6 +109,48 @@ namespace Parkhaus360
                 }
             }
             return Motorradparkplatz;
+        }
+        public int GetBelegteAutoparkplatzAnzahl()
+        {
+            int leerAutoparkplatz = 0;
+            foreach (Parkplatz pp in autoparkplaetze)
+            {
+                if (!pp.IstFrei())
+                {
+                    leerAutoparkplatz++;
+                }
+            }
+            return leerAutoparkplatz;
+        }
+        public int GetBelegteMotorradparkplatzAnzahl()
+        {
+            int leereMotorradparkplatz = 0;
+            foreach (Parkplatz pp in motorradparkplaetze)
+            {
+
+                if (!pp.IstFrei())
+                {
+                    leereMotorradparkplatz++;
+                }
+            }
+            return leereMotorradparkplatz;
+        }
+        public bool IstAutoparkplatzFrei(int index)
+        {
+            if (index >= 0 && index < autoparkplaetze.Count)
+            {
+                return autoparkplaetze[index].IstFrei();
+            }
+            return false; // Index ungültig oder Parkplatz existiert nicht
+        }
+
+        public bool IstMotorradparkplatzFrei(int index)
+        {
+            if (index >= 0 && index < motorradparkplaetze.Count)
+            {
+                return motorradparkplaetze[index].IstFrei();
+            }
+            return false; // Index ungültig oder Parkplatz existiert nicht
         }
 
     }

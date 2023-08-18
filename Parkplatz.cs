@@ -48,6 +48,8 @@ namespace Parkhaus360
         {
             fahrzeug = null;
         }
+        
+
 
     }
 
@@ -82,6 +84,5 @@ namespace Parkhaus360
         {
             return (Motorrad)base.GetFahrzeug();
         }
-
     }
 }

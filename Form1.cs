@@ -1,6 +1,7 @@
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Parkhaus360
 {
@@ -11,28 +12,22 @@ namespace Parkhaus360
         {
             InitializeComponent();
         }
-        private void Umblende()
+       
+        private void Simulationsconstruction()
         {
-            if (panelReset.Visible == true)
+            for (int i = 0; i < haus.GetDeckAnzahl(); i++)
             {
-                labAutos.Text = " ";
-                labEtagen.Text = " ";
-                labzweirad.Text = " ";
-                panelSimulation.Controls.Clear();
-                panelReset.Visible = false;
-                panelErstellung.Visible = true;
-                rtbAusgabe.Clear();
+                cbSimulation.Show();
+                cbSimulation.Items.Add("Ebene " + (i+1));
 
             }
-            else
-            {
-                panelErstellung.Visible = false;
-                panelReset.Visible = true;
-            }
-
+            cbSimulation.SelectedIndex = 0;
         }
         private void SimulationStart()
         {
+            
+            panelSimulation.Controls.Clear();
+            int etage = cbSimulation.SelectedIndex;
             int y = 0;
             for (int x = 0; x < (int)nudPAuto.Value; x++)
             {
@@ -43,46 +38,77 @@ namespace Parkhaus360
                 Label labeltemp = new Label();
                 labeltemp.Name = x.ToString();
                 labeltemp.Text = "O";
-                labeltemp.ForeColor = Color.Green;
-                labeltemp.Location = new Point(x % 10 * 15, y);
-                labeltemp.Width = 12;
-                labeltemp.Height = 12;
-                panelSimulation.Controls.Add(labeltemp);
-            }
-            y += 20;
-            for (int x = 0; x < (int)nudPZweirad.Value; x++)
-            {
-                if (x % 10 == 0)
+                if (haus.IstAutoParkplatzFrei(etage, x) == true)
                 {
-                    y += 20;
+                    labeltemp.ForeColor = Color.Green;
                 }
-                Label labeltemp = new Label();
-                labeltemp.Name = x.ToString();
-                labeltemp.Text = "Y";
-                labeltemp.ForeColor = Color.Green;
+                else
+                {
+                    labeltemp.ForeColor = Color.Red;
+                }
                 labeltemp.Location = new Point(x % 10 * 15, y);
                 labeltemp.Width = 12;
                 labeltemp.Height = 12;
                 panelSimulation.Controls.Add(labeltemp);
+
             }
+
+                y += 20;
+                for (int x = 0; x < haus.GetFreieMotorradParkplatzAnzahl() / haus.GetDeckAnzahl(); x++)
+                {
+                    if (x % 10 == 0)
+                    {
+                        y += 20;
+                    }
+                    Label labeltemp = new Label();
+                    labeltemp.Name = x.ToString();
+                    labeltemp.Text = "Y";
+                    labeltemp.ForeColor = Color.Green;
+                    labeltemp.Location = new Point(x % 10 * 15, y);
+                    labeltemp.Width = 12;
+                    labeltemp.Height = 12;
+                    panelSimulation.Controls.Add(labeltemp);
+
+                }              
+                
+            
+
+
         }
+
+
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            Umblende();
-            SimulationStart();
+
             int etage = (int)nudEtagen.Value;
             int autoParkPlaetze = (int)nudPAuto.Value;
             int zweiradParkPlaetze = (int)nudPZweirad.Value;
             haus = new Parkhaus(etage, autoParkPlaetze, zweiradParkPlaetze);
+            panelErstellung.Visible = false;
+            panelReset.Visible = true;
+            
             Liveupdate();
+            
+            Simulationsconstruction();            
+            SimulationStart();
 
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            Umblende();
+            labAutos.Text = " ";
+            labEtagen.Text = " ";
+            labzweirad.Text = " ";
+            panelReset.Visible = false;
+            panelErstellung.Visible = true;
+            rtbAusgabe.Clear();
+            cbSimulation.Items.Clear();
+            cbSimulation.Hide();
+            panelSimulation.Controls.Clear();
         }
         private void Liveupdate()
         {
@@ -95,45 +121,67 @@ namespace Parkhaus360
         {
             for (int i = 0; i < nudAutorein.Value; i++)
             {
-                if (haus.GetFreieAutoParkplatzAnzahl() <= 0)
+                if (haus == null)
                 {
-                    MessageBox.Show("Es sind keine Autoparkplätze mehr frei");
+                    MessageBox.Show("Bitte erstellen Sie zuerst ein Parkhaus");
                     break;
                 }
                 else
                 {
-                    Auto auto = new Auto(ErstelleNummernschild());
+                    if (haus.GetFreieAutoParkplatzAnzahl() <= 0)
+                    {
+                        MessageBox.Show("Es sind keine Autoparkplätze mehr frei");
+                        break;
+                    }
+                    else
+                    {
+                        Auto auto = new Auto(ErstelleNummernschild());
 
-                    Parkplatz p = haus.FindeFreienParkplatz(auto);
-                    p.belegePlatz(auto);
-                    rtbAusgabe.AppendText(auto.GetKennzeichen() + " Typ: Auto Ebene: "+ p.GetPosition().etage.ToString()+" Platz: "+p.GetPosition().platz.ToString() + Environment.NewLine);
-                    rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
-                    rtbAusgabe.ScrollToCaret();
+                        Parkplatz p = haus.FindeFreienParkplatz(auto);
+                        p.belegePlatz(auto);
+                        rtbAusgabe.AppendText(auto.GetKennzeichen() + " Typ: Auto Ebene: " + p.GetPosition().etage.ToString() + " Platz: " + p.GetPosition().platz.ToString() + Environment.NewLine);
+                        rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
+                        rtbAusgabe.ScrollToCaret();
+                    }
+                    Liveupdate();
+                    
                 }
             }
-            Liveupdate();
+            SimulationStart();
+
         }
         private void btnMotoRein_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < nudMotorradrein.Value; i++)
             {
-                if (haus.GetFreieMotorradParkplatzAnzahl() <= 0)
+                if (haus == null)
                 {
-                    MessageBox.Show("Es sind keine Motorradparkplätze mehr frei");
+                    MessageBox.Show("Bitte erstellen Sie zuerst ein Parkhaus");
                     break;
                 }
                 else
                 {
-                    Motorrad moto = new Motorrad(ErstelleNummernschild());
+                    if (haus.GetFreieMotorradParkplatzAnzahl() <= 0)
+                    {
+                        MessageBox.Show("Es sind keine Motorradparkplätze mehr frei");
+                        break;
+                    }
+                    else
+                    {
+                        Motorrad moto = new Motorrad(ErstelleNummernschild());
 
-                    Parkplatz p = haus.FindeFreienParkplatz(moto);
-                    p.belegePlatz(moto);
-                    rtbAusgabe.AppendText(moto.GetKennzeichen() + " Typ: Zweirad Ebene: " + p.GetPosition().etage.ToString() + " Platz: " + p.GetPosition().platz.ToString() + Environment.NewLine);
-                    rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
-                    rtbAusgabe.ScrollToCaret();
+                        Parkplatz p = haus.FindeFreienParkplatz(moto);
+                        p.belegePlatz(moto);
+                        rtbAusgabe.AppendText(moto.GetKennzeichen() + " Typ: Zweirad Ebene: " + p.GetPosition().etage.ToString() + " Platz: " + p.GetPosition().platz.ToString() + Environment.NewLine);
+                        rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
+                        rtbAusgabe.ScrollToCaret();
+                    }
+                    Liveupdate();
+                    
                 }
             }
-            Liveupdate();
+            SimulationStart();
+
         }
         public string ErstelleNummernschild()
         {
@@ -183,17 +231,26 @@ namespace Parkhaus360
         {
             for (int i = 0; i < nudAutoraus.Value; i++)
             {
-                if (haus.GetFreieAutoParkplatzAnzahl() >= 0)
+                if (haus.GetBelegteAutoParkplatzAnzahl() <= 0)
                 {
                     MessageBox.Show("Es sind keine weiteren Autos mehr geparkt.");
                     break;
                 }
                 else
                 {
+                    Parkplatz pp = haus.FindeErstenBelegtenAutoparkplatz();
+                    if (pp != null)
+                    {
+                        rtbAusgabe.AppendText(pp.GetFahrzeug().GetKennzeichen().ToString() + " fährt raus." + Environment.NewLine);
+                        rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
+                        rtbAusgabe.ScrollToCaret();
+                        pp.GibPlatzFrei();
+                    }
 
                 }
             }
             Liveupdate();
+            SimulationStart();
         }
 
 
@@ -201,26 +258,44 @@ namespace Parkhaus360
         {
             for (int i = 0; i < nudMotorradraus.Value; i++)
             {
-                if (haus.GetFreieMotorradParkplatzAnzahl() >= 0)
+                if (haus.GetbelegteMotorradParkplatzAnzahl() <= 0)
                 {
                     MessageBox.Show("Es sind keine weiteren Motorräder mehr geparkt.");
                     break;
                 }
                 else
                 {
-
+                    Parkplatz pp = haus.FindeErstenBelegtenMotorradparkplatz();
+                    if (pp != null)
+                    {
+                        rtbAusgabe.AppendText(pp.GetFahrzeug().GetKennzeichen().ToString() + " fährt raus." + Environment.NewLine);
+                        rtbAusgabe.SelectionStart = rtbAusgabe.Text.Length;
+                        rtbAusgabe.ScrollToCaret();
+                        pp.GibPlatzFrei();
+                    }
                 }
             }
             Liveupdate();
+            SimulationStart();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if (haus.FindeFahrzeug(tbSuche.Text.ToString()) == null)
+            {
+                MessageBox.Show("Das Auto mit diesem Kennzeichen ist nicht geparkt.");
+            }
+            else
+            {
+                Parkplatz pp = haus.FindeFahrzeug(tbSuche.Text.ToString());
+                lblParkdeck.Text = pp.GetPosition().etage.ToString();
+                lblParkplatz.Text = pp.GetPosition().platz.ToString();
+            }
+        }
 
-            Parkplatz pp = haus.FindeFahrzeug(tbSuche.Text.ToString());
-
-            lblParkdeck.Text = pp.GetPosition().etage.ToString();
-            lblParkplatz.Text = pp.GetPosition().platz.ToString();
+        private void cbSimulation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SimulationStart();
         }
     }
 }
