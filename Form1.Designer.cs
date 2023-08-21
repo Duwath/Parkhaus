@@ -526,14 +526,14 @@
             // 
             panelSimulation.Location = new Point(178, 44);
             panelSimulation.Name = "panelSimulation";
-            panelSimulation.Size = new Size(177, 427);
+            panelSimulation.Size = new Size(177, 437);
             panelSimulation.TabIndex = 27;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(600, 471);
+            ClientSize = new Size(600, 481);
             Controls.Add(rtbAusgabe);
             Controls.Add(panelSimulation);
             Controls.Add(cbSimulation);
